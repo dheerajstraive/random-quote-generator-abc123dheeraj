@@ -1,0 +1,83 @@
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspirational Quotes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        #quote-box {
+            max-width: 600px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #quote {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #author {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        button, a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover, a:hover {
+            background-color: #0056b3;
+        }
+        #tweet-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quote-box">
+        <div id="quote">Click the button to get inspired!</div>
+        <div id="author"></div>
+        <button onclick="getRandomQuote()">Get Quote</button>
+        <a id="tweet-btn" href="#" target="_blank" style="display: none;">Tweet Quote</a>
+    </div>
+    <script>
+        const quotes = [
+            { text: "The best way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+            { text: "The pessimist sees difficulty in every opportunity. The optimist sees opportunity in every difficulty.", author: "Winston Churchill" },
+            { text: "Don't let yesterday take up too much of today.", author: "Will Rogers" },
+            { text: "You learn more from failure than from success. Don’t let it stop you. Failure builds character.", author: "Unknown" },
+            { text: "It’s not whether you get knocked down, it’s whether you get up.", author: "Vince Lombardi" },
+        ];
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quote = quotes[randomIndex];
+            document.getElementById('quote').innerText = quote.text;
+            document.getElementById('author').innerText = quote.author ? '- ' + quote.author : '';
+            
+            const tweetHref = `https://twitter.com/intent/tweet?text="${encodeURIComponent(quote.text)}" - ${encodeURIComponent(quote.author)}`;
+            const tweetBtn = document.getElementById('tweet-btn');
+            tweetBtn.href = tweetHref;
+            tweetBtn.style.display = 'inline-block';
+        }
+    </script>
+</body>
+</html>
